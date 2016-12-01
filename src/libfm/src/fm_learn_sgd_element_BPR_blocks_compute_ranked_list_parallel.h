@@ -46,7 +46,7 @@ void *computeRankedList(void *threadarg){
 	int counter = 0;
 	for (int i = 0; i< t_data->num_sampled_cases; i++){
 		if (std::find(t_data->pos_values, t_data->pos_values+t_data->pos_observations, i) == t_data->pos_values+t_data->pos_observations){
-			uint& sampled_block_id = t_data->train.relation(SAMPLED_BLOCK).data_row_to_relation_row(i);
+			uint sampled_block_id = i;
 			sparse_row<DATA_FLOAT> sampled_block =  t_data->train.relation(SAMPLED_BLOCK).data->data->get(sampled_block_id);
 			double p = t_data->fm->predict_case_blocks(fixed_block,sampled_block,t_data->a_sampled_offsets);
 			weighted_tag[counter].tag_id = i;
